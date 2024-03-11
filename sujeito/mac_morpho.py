@@ -12,8 +12,8 @@ dataset = load_dataset("mac_morpho", trust_remote_code=True)
 
 print("===== DONE =====")
 
-DATASET_TYPE = "train"
-OUTPUT_FILE = f"datasets/dict_{DATASET_TYPE}.csv"
+DATASET_TYPE = "validation"  # "train", "test", "validation
+OUTPUT_FILE = f"{os.path.dirname(__file__)}/datasets/dict_{DATASET_TYPE}.csv"
 
 UNWANTED_TOKENS = [",", ".", "!", "?", ":", ";", "(", ")", "[", "]", "{", "}", '"', "'"]
 
