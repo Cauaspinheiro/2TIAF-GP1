@@ -12,7 +12,9 @@ dataset = load_dataset("mac_morpho", trust_remote_code=True)
 
 print("===== DONE =====")
 
-DATASET_TYPE = "validation"  # "train", "test", "validation
+DATASET_TYPE = input(
+    "Digite a fonte do dataset que você quer gerar (train, test, validation): "
+)  # "train", "test", "validation
 OUTPUT_FILE = f"{os.path.dirname(__file__)}/datasets/dict_{DATASET_TYPE}.csv"
 
 UNWANTED_TOKENS = [",", ".", "!", "?", ":", ";", "(", ")", "[", "]", "{", "}", '"', "'"]
@@ -38,7 +40,7 @@ for i, row in df.iterrows():
             continue
 
         with open(OUTPUT_FILE, "a") as f:
-            f.write(f"{token}|{pos_tag}\n")
+            f.write(f"{token.lower()}|{pos_tag}\n")
 
 print("===== DONE =====")
 
