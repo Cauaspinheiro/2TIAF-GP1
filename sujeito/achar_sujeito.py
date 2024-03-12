@@ -22,10 +22,39 @@ def achar_sujeito(frase: str):
         found_words = []
 
         for token in tokens:
+            word_found = False
+
             for line in lines:
                 word, pos_tag = line.split("|")
 
                 if token.lower() == word:
                     found_words.append((word, pos_tag.strip()))
+                    word_found = True
+            
+            if not word_found:
+                found_words.append((token, ''))
 
-    print(f"Palavras encontradas: {found_words}")
+        
+        verb_index = -1
+
+        for i, (w, pos) in enumerate(found_words):
+            if '19' in pos:
+                verb_index = i
+            
+                break
+        
+        words_before_verb = found_words[:verb_index]
+
+        lista_nun = []
+
+        for w, p in words_before_verb:
+            if '14' in p:
+                lista_nun.append(w)
+            elif p == "":
+                lista_nun.append(w)
+        
+        sujeito = " ".join(lista_nun)
+    
+    print(f"O sujeito é: {sujeito}")
+    
+    return sujeito
